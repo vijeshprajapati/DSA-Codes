@@ -9,6 +9,15 @@ Geek is going for a training program for n days. He can perform any of these act
 using namespace std;
 //---------------------------------------
 // Recursive & Memoised solution
+/*
+Time Complexity: O(n × 4 × 3) = O(n)
+There are n days and 4 possible values for last (0, 1, 2, 3).
+For each state, we loop through 3 possible activities.
+
+Space Complexity: O(n × 4) + O(n) for recursion stack
+O(n × 4) for the DP table
+O(n) for recursion call stack in the worst case
+*/
 int solve(vector<vector<int>> &arr, int n, int last, vector<vector<int>> &memo){
     if(n == 0){
         int maxi = INT_MIN;
@@ -49,6 +58,13 @@ int main()
 
 
     // --------Tabulation approach--------------
+    /*
+    Time Complexity: O(n × 4 × 3) = O(n)
+    For each day, we loop through 4 values of last and 3 values of task.
+    
+    Space Complexity: O(n × 4)
+    DP table of size n × 4 is maintained to store intermediate results.
+    */
     vector<vector<int>> dp(n, vector<int>(4, -1));
     dp[0][0] = max(arr[0][1], arr[0][2]);
     dp[0][1] = max(arr[0][0], arr[0][2]);
@@ -72,6 +88,13 @@ int main()
 
 
     // -- Tabulation + space optimised--
+    /*
+    Time Complexity: O(n × 4 × 3) = O(n)
+    For each day (n), we loop through 4 values of last and for each last, try 3 task options.
+
+    Space Complexity: O(4) = O(1)
+    Only two arrays of size 4 are used (prev and temp), making it constant space.
+    */
     vector<int> dp(4, -1);
     dp[0] = max(arr[0][1], arr[0][2]);
     dp[1] = max(arr[0][0], arr[0][2]);
