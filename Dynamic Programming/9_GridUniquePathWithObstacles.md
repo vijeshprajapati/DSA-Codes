@@ -8,7 +8,7 @@ Time Complexity: O(m * n), where m is the number of rows and n is the number of 
 
 Space Complexity: O((N-1)+(M-1)) + O(M*N) We are using a recursion stack space: O((N-1)+(M-1)), here (N-1)+(M-1) is the path length and an external DP Array of size ‘M*N’.
 
-````
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -43,7 +43,7 @@ int main()
     cout<<solve(arr, m - 1, n - 1, memo);
     return 0;
 }
-````
+```
 
 **Tabulation Solution(Bottom Up DP)**
 
@@ -51,7 +51,7 @@ Time Complexity: O(m * n), where m is the number of rows and n is the number of 
 
 Space Complexity: O(m * n), where m is the number of rows and n is the number of columns in the matrix. This is due to the use of a 2D DP array to store intermediate results.
 
-````
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -92,7 +92,7 @@ int main()
 
     return 0;
 }
-````
+```
 
 **Tabulation + Space optimised DP**
 
@@ -101,7 +101,7 @@ Time Complexity: O(m * n), where m is the number of rows and n is the number of 
 Space Complexity: O(n), where n is the number of columns in the matrix. This is due to the use of two 1D arrays to store intermediate results, instead of a full 2D DP array.
 
 
-````
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -145,4 +145,4 @@ int main()
 
     return 0;
 }
-````
+```
