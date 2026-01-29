@@ -1,6 +1,8 @@
 ****Grid Unique Paths****
 Link : https://www.geeksforgeeks.org/dsa/count-possible-paths-top-left-bottom-right-nxm-matrix/
+
 **Recursive & Memoised Code**
+
 Time Complexity: O(m * n), where m is the number of rows and n is the number of columns in the grid. This is because we are filling up a 2D DP array of size m x n, and each cell takes constant time to compute.
 
 Space Complexity: O(m * n), due to the storage of the DP array which keeps track of the number of unique paths to each cell in the grid.
@@ -34,6 +36,7 @@ int main()
 ````
 
 **Tabulation Solution(Bottom Up DP)**
+
 Time Complexity: O(m * n), where m is the number of rows and n is the number of columns in the grid. This is because we are filling up a 2D DP array of size m x n, and each cell takes constant time to compute.
 
 Space Complexity: O(m * n), as we are using a 2D array to store the results of subproblems. However, we can optimize this to O(n) by using a 1D array and updating it in place.
@@ -69,6 +72,7 @@ int main()
 ````
 
 **Tabulation + Space optimised DP**
+
 Time Complexity: O(m * n), where m is the number of rows and n is the number of columns in the grid. This is because we are iterating through each cell in the grid once.
 
 Space Complexity: O(n), as we are using two arrays of size n to store the current and previous rows. This is an optimization from the previous approaches that used a 2D array.
