@@ -1,0 +1,57 @@
+****Minimum/Maximum Falling Path Sum (DP-12)****
+
+Problem Statement 
+
+Given a 2D array called matrix consisting of integer values return the maximum path sum that can be obtained by starting at any cell in the first row and ending at any cell in the last row.
+
+Movement is allowed only to the bottom, bottom-right, or bottom-left cell of the current cell.
+
+**Recursive & Memoised code**
+
+Time Complexity: O(N*M), we call our recursive function for every element in the grid.
+Space Complexity: O(N*M) + O(N), space used to store memo table and recursive stack space.
+
+```c++
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<climits>
+using namespace std;
+
+int solve(vector<vector<int>> &arr, int i, int j, vector<vector<int>> &memo){
+    if(j < 0 || j >= arr[0].size()){
+        return -1e9;
+    }
+    if(i == 0){
+        return arr[0][j];
+    }
+    if(memo[i][j] != -1) return memo[i][j];
+
+    int up = arr[i][j] + solve(arr, i - 1, j, memo);
+    int left = arr[i][j] + solve(arr, i - 1, j - 1, memo);
+    int right = arr[i][j] + solve(arr, i - 1, j + 1, memo);
+    
+    return memo[i][j] = max({up, left, right});
+
+}
+
+int main()
+{
+    vector<vector<int>> arr = {
+        {10, 10, 2, 0, 20, 4},
+        {1, 0, 0, 30, 2, 5},
+        {0, 10, 4, 0, 2, 0},
+        {1, 0, 2, 20, 0, 4}
+    };
+    int m = arr.size();
+    int n = arr[0].size();
+    vector<vector<int>> memo(m, vector<int>(n, -1));
+    int maxi = INT_MIN;
+    for(int j = 0; j < n; j++){
+        maxi = max(maxi, solve(arr, m - 1, j, memo));
+    }
+    cout<<maxi;
+
+    return 0;
+}
+```
