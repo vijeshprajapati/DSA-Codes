@@ -102,3 +102,52 @@ int main()
     return 0;
 }
 ```
+
+**Tabulation+ Space Optimization**
+
+Time Complexity: O(N*M), we call our recursive function for every element in the grid.
+Space Complexity: O(N) , space used to store the 2 arrays having values of current and previous rows.
+
+```c++
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<climits>
+using namespace std;
+
+int main()
+{
+    vector<vector<int>> arr = {
+        {10, 10, 2, 0, 20, 4},
+        {1, 0, 0, 30, 2, 5},
+        {0, 10, 4, 0, 2, 0},
+        {1, 0, 2, 20, 0, 4}
+    };
+    int m = arr.size();
+    int n = arr[0].size();
+    vector<int> prev(n, 0);
+    for(int j = 0; j < n; j++){
+        prev[j] = arr[0][j];
+    }
+    for(int i = 1; i < m; i++){
+        vector<int> curr(n);
+        for(int j = 0; j < n; j++){
+            int up = arr[i][j] + prev[j];
+            int left = arr[i][j];
+            if(j > 0) left += prev[j - 1];
+            else left = -1e9;
+            int right = arr[i][j]; 
+            if(j < n - 1) right += prev[j + 1];
+            else right = -1e9;
+            curr[j] = max({up,left, right});
+        }
+        prev = curr;
+    }
+    int maxi = -1e9;
+    for(int j = 0; j < n; j++){
+        maxi = max(maxi, prev[j]);
+    }
+    cout<<maxi;
+    return 0;
+}
+```
